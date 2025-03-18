@@ -29,7 +29,6 @@ const navItems = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Projects', to: '/projects' },
-  { label: 'Services', to: '/services' },
   { label: 'Contact', to: '/contact' },
 ]
 
@@ -60,7 +59,7 @@ const Header = () => {
   const logoScale = useTransform(smoothProgress, [0, 1], [1, 0.95])
   
   // Dynamic colors and shadows based on progress and color mode
-  const bgOpacity = useTransform(smoothProgress, [0, 1], [0.7, 0.95])
+  const bgOpacity = useTransform(smoothProgress, [0, 1], [1.0, 1.0])
   
   // Calculate background colors based on color mode
   const lightBgColor = useTransform(bgOpacity, (opacity) => `rgba(255, 255, 255, ${opacity})`)
@@ -165,7 +164,7 @@ const Header = () => {
             alignItems="center"
           >
             <MotionImage 
-              src="/images/ebdesigns.jpg"
+              src="/images/logo.svg"
               alt="EB Designs Logo"
               style={{ height: logoHeight }}
               width="auto"

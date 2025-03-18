@@ -244,4 +244,45 @@ This document outlines the technical specifications, technology stack, developme
 ### Extensibility
 - Modular architecture for easy feature addition
 - Plugin system for future extensions
-- API-first approach for backend integration 
+- API-first approach for backend integration
+
+## Tech Stack
+- **Frontend**: React with TypeScript, Chakra UI, Framer Motion
+- **Styling**: Chakra UI, Emotion
+- **Animations**: Framer Motion, GSAP (for complex animations)
+- **State Management**: React Context API
+- **Routing**: React Router
+- **Form Handling**: Formik with Yup validation
+- **HTTP Requests**: Axios
+- **Development Tools**: Vite, ESLint, Prettier
+
+## Components Architecture
+
+The application is built using a component-based architecture with the following key components:
+
+- `Layout`: Main layout wrapper that includes the Navbar and Footer
+- `ModernHeroSection`: Dynamic hero section with animated elements and call-to-action
+- `Navbar`: Navigation component with responsive menu and theme toggle
+- `ModernFooter`: Award-winning footer with newsletter subscription, availability status, and interactive elements
+- `ContactForm`: Form component for user inquiries with validation
+- `ScrollAnimation`: Component for animating elements as they enter the viewport
+- `LoadingSpinner`: Loading indicator for asynchronous operations
+- `ModernSkillsSection`: Interactive skills showcase with animations and hover effects
+- `ModernProjectGrid`: Award-winning project showcase with dynamic layout, 3D elements, and micro-interactions
+- `DesignProcessShowcase`: Visual representation of the design workflow process
+
+## Design Patterns
+- Component-based architecture
+- Separation of concerns between UI components and logic
+- Theme provider for consistent styling
+- Responsive design with mobile-first approach
+- Motion components for smooth animations and transitions
+
+## Coding Standards
+- TypeScript strict mode
+- Named exports for components
+- Functional components with hooks
+- Props interfaces for all components
+- Consistent file naming convention (PascalCase for components)
+- CSS-in-JS with Chakra UI and Emotion
+- Comments for complex logic and component purposes 

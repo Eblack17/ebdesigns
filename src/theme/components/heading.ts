@@ -50,6 +50,14 @@ export const Heading = {
       as: 'h2',
       fontSize: ['2xl', '3xl'],
       fontWeight: 'light',
+      fontFamily: "'Roboto', sans-serif",
+      lineHeight: 'short',
+    },
+    h3: {
+      as: 'h3',
+      fontSize: ['xl', '2xl'],
+      fontWeight: 'light',
+      fontFamily: "'Roboto', sans-serif",
       lineHeight: 'short',
     },
     pageTitle: {
@@ -61,6 +69,7 @@ export const Heading = {
     sectionTitle: {
       fontSize: ['2xl', '3xl'],
       fontWeight: 'light',
+      fontFamily: "'Roboto', sans-serif",
       lineHeight: 'short',
       mb: 4,
       position: 'relative',

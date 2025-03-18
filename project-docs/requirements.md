@@ -190,4 +190,40 @@ Each feature will be considered complete when it:
 4. Is verified across target browsers and devices
 5. Meets accessibility standards
 6. Performs within performance budgets
-7. Includes appropriate documentation 
+7. Includes appropriate documentation
+
+## UI/UX Requirements
+
+### Home Page
+- Modern, minimal 2-column hero section following 2024 design trends
+- Clear and compelling headline and description
+- Call-to-action buttons for primary user journeys
+- Infinite carousel for showcasing featured projects with auto-play functionality
+- Skills and services overview
+- Client testimonials showcase
+- Contact call-to-action 
+
+## Features
+
+### Modern Project Showcase
+
+The portfolio features a highly dynamic and visually impressive project display that follows 2024-2025 design trends:
+
+#### Visual Design
+- **Featured Project Highlight**: The first project is displayed in a larger format with enhanced visual elements
+- **Dynamic Grid Layout**: Projects are organized in a responsive grid that adapts to different screen sizes
+- **3D Elements and Depth**: Uses subtle shadows, transforms, and perspective effects for depth
+- **Tag-Based Organization**: Projects are labeled with relevant skill tags for easy categorization
+- **Decorative Elements**: Subtle background elements enhance visual interest without distracting
+
+#### Interactions
+- **Micro-interactions**: Subtle animations respond to user hover and scroll actions
+- **Progressive Animation**: Projects appear with a staggered animation sequence
+- **Enhanced Hover States**: Detailed information and visual feedback on hover
+- **Smooth Transitions**: All animations use natural easing for a polished feel
+
+#### Technical Implementation
+- **Responsive Design**: Fully adaptive layout for all screen sizes
+- **Performance Optimized**: Animations are hardware-accelerated for smooth performance
+- **Accessibility Focused**: All interactive elements are keyboard navigable and screen reader friendly
+- **Dark/Light Mode Compatible**: Design adapts perfectly to both color modes 

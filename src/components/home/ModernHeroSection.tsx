@@ -1,225 +1,225 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Flex, Text, Grid, GridItem, Container, Heading, useMediaQuery, VStack, HStack } from '@chakra-ui/react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useMousePosition } from '../../hooks/useMousePosition';
-import AnimatedText from '../shared/AnimatedText';
-import AnimatedGradientBackground from '../shared/AnimatedGradientBackground';
-import ModernButton from '../shared/ModernButton';
-import FloatingElements from './FloatingElements';
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import { 
+  Box, 
+  Container, 
+  Heading, 
+  Text, 
+  VStack, 
+  HStack, 
+  Grid, 
+  GridItem, 
+  Button, 
+  useColorModeValue,
+  Flex,
+  Divider
+} from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import { FiArrowRight } from 'react-icons/fi';
 
 // Motion components
 const MotionBox = motion(Box);
+const MotionHeading = motion(Heading);
+const MotionText = motion(Text);
 const MotionFlex = motion(Flex);
 
 /**
- * ModernHeroSection - Award-winning 2025-style hero section with interactive elements
- * and micro-animations for a portfolio website
+ * Modern2024HeroSection - A clean, minimal 2-column hero section design
+ * following 2024 web design trends for portfolio websites
  */
-export const ModernHeroSection: React.FC = () => {
-  const [isLargerThan768] = useMediaQuery('(min-width: 768px)');
-  const { scrollYProgress } = useScroll();
-  const { normalizedPosition, isInViewport } = useMousePosition();
+const ModernHeroSection: React.FC = () => {
+  // Colors that adapt to light/dark mode
+  const bgColor = useColorModeValue('gray.50', 'gray.900');
+  const accentColor = useColorModeValue('brand.500', 'brand.300');
+  const textColor = useColorModeValue('gray.800', 'gray.100');
+  const subtextColor = useColorModeValue('gray.600', 'gray.400');
+  const dividerColor = useColorModeValue('brand.500', 'brand.400');
+  const heroImage = useColorModeValue('/images/hero.png', '/images/herodark.png');
   
-  // Parallax effect based on scroll position
-  const leftColumnY = useTransform(scrollYProgress, [0, 0.5], [0, -100]);
-  const rightColumnY = useTransform(scrollYProgress, [0, 0.5], [0, -50]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
   
-  // Highlighted words in the heading
-  const highlightWords = ['Transforming', 'Ideas', 'Digital', 'Reality'];
-  
-  // Sub-heading animation sequence
-  const [subheadingIndex, setSubheadingIndex] = useState(0);
-  const subheadings = ['Design', 'Development', 'Innovation'];
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSubheadingIndex((prev) => (prev + 1) % subheadings.length);
-    }, 3000);
-    
-    return () => clearInterval(interval);
-  }, []);
-  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
   return (
     <Box 
-      position="relative" 
-      height={{ base: 'auto', md: '100vh' }}
-      minHeight={{ base: '90vh', md: '800px' }}
+      as="section"
+      py={{ base: 16, md: 24, lg: 32 }}
+      bg={bgColor}
       overflow="hidden"
+      position="relative"
+      bgImage={heroImage}
+      bgSize="cover"
+      bgPosition="center"
+      bgRepeat="no-repeat"
     >
-      {/* Gradient background with noise texture */}
-      <AnimatedGradientBackground
-        position="absolute"
-        top="0"
-        left="0"
-        right="0"
-        bottom="0"
-        colorStart="#2F1C63"
-        colorMid="#5F1A88"
-        colorEnd="#270F3F"
-        noiseOpacity={0.03}
-        animationDuration={15}
-        zIndex={0}
-      />
-      
-      {/* Content container */}
-      <Container 
-        maxW="1400px" 
-        height="100%" 
-        position="relative" 
-        zIndex={2}
-        px={{ base: 4, md: 8 }}
-      >
+      <Container maxW="container.xl" position="relative">
         <Grid
-          templateColumns={{ base: '1fr', md: '1fr 1fr' }}
-          height="100%"
-          gap={{ base: 10, md: 0 }}
-          py={{ base: 20, md: 0 }}
-          alignItems="center"
+          templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
+          gap={{ base: 10, md: 16, lg: 24 }}
         >
-          {/* Left column - Text content */}
-          <GridItem position="relative">
+          {/* Left Column - Content */}
+          <GridItem
+            ml={{ base: 0, md: '-15%', lg: '-20%' }}
+          >
             <MotionBox
-              style={{ y: isLargerThan768 ? leftColumnY : 0 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              height="100%"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
             >
-              <VStack alignItems="flex-start" spacing={6}>
-                {/* Animated heading */}
-                <Box>
-                  <AnimatedText
-                    text="Transforming Ideas into Digital Reality"
-                    animationType="words"
-                    highlightWords={highlightWords}
-                    highlightColor="brand.primary"
-                    fontSize={{ base: '3xl', md: '5xl', lg: '6xl' }}
-                    fontWeight="800"
-                    lineHeight="1.1"
-                    letterSpacing="-0.02em"
-                    delay={0.3}
-                  />
-                </Box>
-                
-                {/* Animated subheading */}
-                <MotionFlex 
-                  color="whiteAlpha.800"
-                  fontSize={{ base: 'md', md: 'xl' }}
-                  fontWeight="500"
-                  letterSpacing="0.05em"
+              {/* Overline text */}
+              <MotionBox variants={itemVariants} mb={3}>
+                <Text
                   textTransform="uppercase"
-                  mt={2}
+                  letterSpacing="wider"
+                  fontWeight="medium"
+                  fontSize="sm"
+                  color={accentColor}
+                >
+                  Portfolio 2025
+                </Text>
+              </MotionBox>
+              
+              {/* Primary heading */}
+              <MotionHeading
+                variants={itemVariants}
+                as="h1"
+                fontSize={{ base: '4xl', md: '5xl', lg: '6xl' }}
+                fontWeight="bold"
+                lineHeight="1.1"
+                letterSpacing="tight"
+                color={textColor}
+                mb={6}
+              >
+                Crafting Digital{' '}
+                <Box 
+                  as="span" 
                   position="relative"
-                  height="30px"
-                  alignItems="center"
+                  color={accentColor}
+                  _after={{
+                    content: '""',
+                    position: 'absolute',
+                    bottom: '-4px',
+                    left: 0,
+                    width: '100%',
+                    height: '2px',
+                    bg: dividerColor,
+                  }}
                 >
-                  <AnimatedText
-                    text={subheadings[0]}
-                    key={`subheading-${0}`}
-                    animationType="characters"
-                    delay={0}
-                    duration={0.5}
-                    style={{ 
-                      display: subheadingIndex === 0 ? 'block' : 'none',
-                      position: 'absolute'
-                    }}
-                  />
-                  <AnimatedText
-                    text={subheadings[1]}
-                    key={`subheading-${1}`}
-                    animationType="characters"
-                    delay={0}
-                    duration={0.5}
-                    style={{ 
-                      display: subheadingIndex === 1 ? 'block' : 'none',
-                      position: 'absolute'
-                    }}
-                  />
-                  <AnimatedText
-                    text={subheadings[2]}
-                    key={`subheading-${2}`}
-                    animationType="characters"
-                    delay={0}
-                    duration={0.5}
-                    style={{ 
-                      display: subheadingIndex === 2 ? 'block' : 'none',
-                      position: 'absolute'
-                    }}
-                  />
-                </MotionFlex>
-                
-                {/* Description */}
-                <MotionBox
-                  maxW="550px"
-                  color="whiteAlpha.800"
-                  fontSize={{ base: 'sm', md: 'md' }}
-                  lineHeight="1.8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
+                  Experiences
+                </Box>
+              </MotionHeading>
+              
+              {/* Descriptive text */}
+              <MotionText
+                variants={itemVariants}
+                fontSize={{ base: 'lg', md: 'xl' }}
+                color={subtextColor}
+                lineHeight="1.7"
+                maxW="540px"
+                mb={8}
+              >
+                Award-winning designer and developer focused on creating
+                immersive user experiences that blend creativity with cutting-edge
+                technology to elevate your brand.
+              </MotionText>
+              
+              {/* Divider */}
+              <MotionBox variants={itemVariants}>
+                <Divider 
+                  width="64px" 
+                  borderColor={dividerColor} 
+                  borderBottomWidth="3px" 
+                  opacity={1} 
+                  mb={8} 
+                />
+              </MotionBox>
+              
+              {/* Call to action buttons */}
+              <MotionFlex
+                variants={itemVariants}
+                gap={4}
+                flexWrap={{ base: 'wrap', md: 'nowrap' }}
+              >
+                <Button
+                  as={RouterLink}
+                  to="/projects"
+                  size="lg"
+                  colorScheme="brand"
+                  rightIcon={<FiArrowRight />}
+                  px={8}
+                  position="relative"
+                  overflow="hidden"
+                  _before={{
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    bg: 'brand.500',
+                    opacity: 0.1,
+                    transform: 'translateX(-100%)',
+                    transition: 'transform 0.3s ease-out',
+                  }}
+                  _hover={{
+                    transform: 'translateY(-2px)',
+                    _before: {
+                      transform: 'translateX(0)',
+                    }
+                  }}
                 >
-                  <Text>
-                    Award-winning designer and developer crafting immersive digital 
-                    experiences that blend creativity with cutting-edge technology. 
-                    Specializing in responsive websites, interactive applications, 
-                    and brand identity systems that elevate businesses.
-                  </Text>
-                </MotionBox>
-                
-                {/* Action buttons */}
-                <MotionFlex
-                  gap={4}
-                  mt={2}
-                  flexWrap={{ base: 'wrap', md: 'nowrap' }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.9 }}
+                  View Projects
+                </Button>
+                <Button
+                  as={RouterLink}
+                  to="/contact"
+                  size="lg"
+                  variant="outline"
+                  colorScheme="brand"
+                  px={8}
+                  _hover={{
+                    transform: 'translateY(-2px)',
+                    bg: useColorModeValue('brand.50', 'rgba(154, 105, 237, 0.12)')
+                  }}
                 >
-                  <ModernButton to="/portfolio" arrow variant="primary">
-                    See My Work
-                  </ModernButton>
-                  <ModernButton to="/contact" variant="secondary">
-                    Let's Connect
-                  </ModernButton>
-                </MotionFlex>
-              </VStack>
+                  Get in Touch
+                </Button>
+              </MotionFlex>
             </MotionBox>
           </GridItem>
           
-          {/* Right column - Visual elements */}
+          {/* Right Column - Intentionally left empty as requested */}
           <GridItem 
             position="relative" 
-            height={{ base: '500px', md: '100%' }}
-            display={{ base: 'none', md: 'block' }}
+            height="100%"
           >
-            <MotionBox
-              position="relative"
-              height="100%"
-              width="100%"
-              style={{ y: rightColumnY, opacity }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-            >
-              <FloatingElements />
-            </MotionBox>
+            {/* Empty space - You can add subtle visual elements here later if desired */}
           </GridItem>
         </Grid>
       </Container>
-      
-      {/* Decorative elements */}
-      <Box
-        position="absolute"
-        bottom="0"
-        left="0"
-        right="0"
-        height="150px"
-        bgGradient="linear(to-t, rgba(0,0,0,0.3), transparent)"
-        pointerEvents="none"
-        zIndex={1}
-      />
     </Box>
   );
 };
 
-export default ModernHeroSection; 
+export default ModernHeroSection;

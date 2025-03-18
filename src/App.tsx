@@ -4,7 +4,8 @@ import { AnimatePresence } from 'framer-motion'
 
 // Import layout components
 import Header from './components/layout/Header'
-import Footer from './components/layout/Footer'
+import MinimalFooter from './components/layout/ModernFooter'
+import ScrollToTop from './components/shared/ScrollToTop'
 
 // Import page components
 import HomePage from './pages/HomePage'
@@ -19,6 +20,7 @@ function App() {
   
   return (
     <Box minH="100vh" display="flex" flexDirection="column">
+      <ScrollToTop />
       <Header />
       <Box as="main" flex="1">
         <AnimatePresence mode="wait" initial={false}>
@@ -32,7 +34,7 @@ function App() {
           </Routes>
         </AnimatePresence>
       </Box>
-      <Footer />
+      <MinimalFooter />
     </Box>
   )
 }

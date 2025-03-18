@@ -2,6 +2,69 @@
 
 This document outlines the user journey, data flow, and project file structure for the EB Designs portfolio website.
 
+## User Journey
+
+1. **Homepage Entry**: Users land on the homepage and see the hero section with a brief introduction
+2. **Skills Overview**: Users scroll to the "What I Do" section to view the designer's skills in an interactive, modern format
+3. **Project Showcase**: Users explore featured projects with filtering options
+4. **Design Process**: Users learn about the designer's systematic approach to projects through an interactive timeline
+5. **Contact**: Users fill out a contact form or find contact information
+
+## Project File Structure
+
+```
+src/
+├── assets/
+│   ├── images/
+│   ├── icons/
+│   └── fonts/
+├── components/
+│   ├── common/
+│   │   ├── Button.tsx
+│   │   ├── Card.tsx
+│   │   ├── LoadingSpinner.tsx
+│   │   └── ScrollAnimation.tsx
+│   ├── home/
+│   │   ├── HeroSection.tsx
+│   │   ├── FeaturedProjects.tsx
+│   │   ├── ModernSkillsSection.tsx
+│   │   ├── DesignProcessShowcase.tsx
+│   │   └── TestimonialsSection.tsx
+│   ├── layout/
+│   │   ├── Footer.tsx
+│   │   ├── Layout.tsx
+│   │   └── Navbar.tsx
+│   └── projects/
+│       ├── ProjectCard.tsx
+│       ├── ProjectDetails.tsx
+│       └── ProjectFilters.tsx
+├── hooks/
+│   ├── useAnimation.ts
+│   └── useScrollPosition.ts
+├── pages/
+│   ├── AboutPage.tsx
+│   ├── ContactPage.tsx
+│   ├── HomePage.tsx
+│   ├── ProjectDetailPage.tsx
+│   └── ProjectsPage.tsx
+├── styles/
+│   ├── theme.ts
+│   └── global.css
+├── utils/
+│   ├── animation.ts
+│   └── helpers.ts
+├── App.tsx
+└── main.tsx
+```
+
+## Data Flow
+
+1. **User Interaction**: User interacts with the UI
+2. **Component State**: Component state updates based on interaction
+3. **API Calls**: Data fetched from backend services when needed
+4. **UI Updates**: UI components re-render with updated data
+5. **Animation Triggers**: Animations triggered based on user interaction or scroll position
+
 ## User Flow
 
 ### Home Page
@@ -9,7 +72,7 @@ This document outlines the user journey, data flow, and project file structure f
 2. Views hero section with introduction and call-to-action
 3. Scrolls to see featured projects
 4. Explores skills/services section
-5. Reads testimonials
+5. Interacts with the design process timeline showcase
 6. Can navigate to:
    - Projects page via "View My Work" button
    - Contact page via "Get in Touch" button
